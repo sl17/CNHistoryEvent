@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/js/vue@2.6.14.js"></script>
+</head>
+
+<body>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function () {
+        return {
+        }
+      },
+      mounted() {
+        this.getData()
+      },
+      methods: {
+        getData(){
+          fetch('/data.json', {
+              method: 'get'
+          })
+          .then(function(data) {
+              return data.text();
+          }).then(function(data) {
+              console.log(data)
+          });
+        }
+      }
+    })
+  </script>
+  <!--<script type="text/javascript">
+    /*
+      Fetch API 基本用法
+        fetch(url).then()
+      第一个参数请求的路径，Fetch会返回Promise，所以我们可以使用then拿到请求成功的结果 
+    */
+    fetch('http://localhost:3000/fdata').then(function(data){
+      // text()方法属于fetchAPI的一部分，它返回一个Promise实例对象，用于获取后台返回的数据
+      return data.text();
+    }).then(function(data){
+      //   在这个then里面我们能拿到最终的数据  
+      console.log(data);
+    })
+  </script>
+  1. fetch API 中的 HTTP 请求
+  fetch(url, options).then()。
+  HTTP协议，它给我们提供了很多的方法，如POST，GET，DELETE，UPDATE，PATCH和PUT，默认的是 GET 请求。需要在 options 对象中指定对应的请求方法（格式是：method(String)）。
+  post和普通请求的时候，需要在options中设置请求头（格式是：headers(Objects)）和请求体（格式是：body(String)）。
+  <script type="text/javascript">
+      /*
+            Fetch API 调用接口传递参数
+      */
+     #1.1 GET参数传递 - 传统URL 通过url ？的形式传参 
+      fetch('http://localhost:3000/books?id=123', {
+            # get 请求可以省略不写 默认的是GET 
+              method: 'get'
+          })
+          .then(function(data) {
+            # 它返回一个Promise实例对象，用于获取后台返回的数据
+              return data.text();
+          }).then(function(data) {
+            # 在这个then里面我们能拿到最终的数据  
+              console.log(data)
+          });
+  
+     #1.2  GET参数传递 - restful形式的URL，通过 / 的形式传递参数，即id = 456，id后台的配置有关   
+      fetch('http://localhost:3000/books/456', {
+            # get 请求可以省略不写 默认的是GET 
+              method: 'get'
+          })
+          .then(function(data) {
+              return data.text();
+          }).then(function(data) {
+              console.log(data)
+          });
+  
+     #2  DELETE请求方式参数传递，删除id=789的书籍
+      fetch('http://localhost:3000/books/789', {
+              method: 'delete'
+          })
+          .then(function(data) {
+              return data.text();
+          }).then(function(data) {
+              console.log(data)
+          });
+  
+     #3.1 POST请求传参，参数使用&分隔的字符串
+      fetch('http://localhost:3000/books', {
+              method: 'post',
+            # 传递数据 
+              body: 'uname=lisi&pwd=123',
+            # 设置请求头 
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              }
+          })
+          .then(function(data) {
+              return data.text();
+          }).then(function(data) {
+              console.log(data)
+          });
+  
+     #3.2 POST请求传参，JSON格式的
+      fetch('http://localhost:3000/books', {
+              method: 'post',
+              // 将对象转化成json形式的字符串
+              body: JSON.stringify({
+                  uname: '张三',
+                  pwd: '456'
+              }),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+          .then(function(data) {
+              return data.text();
+          }).then(function(data) {
+              console.log(data)
+          });
+  
+      #4 PUT请求传参，修改id是123的书籍
+      fetch('http://localhost:3000/books/123', {
+              method: 'put',
+              body: JSON.stringify({
+                  uname: '张三',
+                  pwd: '789'
+              }),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+          .then(function(data) {
+              return data.text();
+          }).then(function(data) {
+              console.log(data)
+          });
+  </script>-->
+  
+</body>
+
+</html>
